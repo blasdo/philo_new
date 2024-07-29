@@ -6,12 +6,13 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:01:55 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/07/29 12:50:16 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/07/29 13:57:58 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
+# include <sys/time.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
@@ -47,6 +48,15 @@ typedef struct s_common_data
 * common_data: struct of common data
 */
 
+typedef enum	e_action
+{
+	THINK,
+	FORK,
+	EAT,
+	SLEEP,
+	DEAD
+}				t_action;
+
 typedef struct s_philo
 {
 	uint32_t		id;
@@ -57,10 +67,19 @@ typedef struct s_philo
 	t_common_data	*common_data;
 }				t_philo;
 
-void	eat(t_philo *this);
-void	f_sleep(t_philo *this);
-void	log(t_philo *this);
-void	think(t_philo *this);
-void	*start_philo(void *philo);
-t_philo	*new_philo(void);
+/*
+* @name eat
+* @param this
+*/
+void	eat(t_philo *this); //private
+void	f_sleep(t_philo *this); //private
+void	log(t_philo *this, t_action act); //public
+void	think(t_philo *this); //private
+void	*start_philo(void *philo); //public
+t_philo	*new_philo(void); //public
+
+//utils
+
+time_t	get_milliseconds(void);
+
 #endif
