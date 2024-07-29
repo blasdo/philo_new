@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:01:55 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/07/28 15:19:39 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/07/29 12:50:16 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_common_data
 
 typedef struct s_philo
 {
-	uint			id;
+	uint32_t		id;
 	uint8_t			isalive;
 	time_t			last_time_eat;
 	pthread_mutex_t	*forks[2];
@@ -58,7 +58,7 @@ typedef struct s_philo
 }				t_philo;
 
 void	eat(t_philo *this);
-void	t_sleep(t_philo *this);
+void	f_sleep(t_philo *this);
 void	log(t_philo *this);
 void	think(t_philo *this);
 void	*start_philo(void *philo);
