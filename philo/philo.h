@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:01:55 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/07/29 13:57:58 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/07/30 14:59:13 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+# include <unistd.h>
 # include <pthread.h>
 # include <limits.h>
 # include <stdint.h>
@@ -31,9 +32,11 @@
 
 typedef struct s_common_data
 {
+	int				max_eats;
 	time_t			eat_time;
 	time_t			sleep_time;
 	time_t			limit_time;
+	time_t			start_time;
 	pthread_mutex_t	log_mutex;
 	pthread_mutex_t	start_mutex;
 }				t_common_data;
@@ -71,13 +74,17 @@ typedef struct s_philo
 * @name eat
 * @param this
 */
-void	eat(t_philo *this); //private
-void	f_sleep(t_philo *this); //private
-void	log(t_philo *this, t_action act); //public
-void	think(t_philo *this); //private
-void	*start_philo(void *philo); //public
-t_philo	*new_philo(void); //public
-
+void	eat_pair(t_philo *this);
+void	eat_odd(t_philo *this);
+void	f_sleep(t_philo *this);
+void	think(t_philo *this);
+void	*start_philo(void *philo);
+// public
+time_t	last_eat(t_philo *this);
+uint8_t	isalive(t_philo *this);
+void	log(t_philo *phil, t_action act);
+t_philo	*new_philo(void);
+uint8_t	verify_eat_time(t_philo *phil);
 //utils
 
 time_t	get_milliseconds(void);
