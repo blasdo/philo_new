@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:31:57 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/07/30 15:44:45 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/02 14:55:43 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	hemlock(t_philo *this)
 	pthread_mutex_unlock(&this->philo_mutex);
 }
 
-void	log(t_philo *this, t_action act)
+void	p_log(t_philo *this, t_action act)
 {
 	const char	*actions[5] = {"is thinking", "has taken a fork", "is eating"
 		, "is sleeping", "died"};
@@ -63,7 +63,7 @@ void	log(t_philo *this, t_action act)
 	{
 		printf("%li %i %s\n", get_milliseconds() - this->common_data->start_time,
 			this->id, actions[act]);
-		if (act = DEAD)
+		if (act == DEAD)
 		{
 			canwrite = 0;
 			hemlock(this);

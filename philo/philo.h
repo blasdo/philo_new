@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:01:55 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/07/31 17:39:22 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/02 14:49:11 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ typedef struct s_philo
 
 void	eat_pair(t_philo *this);
 void	eat_odd(t_philo *this);
-void	f_sleep(t_philo *this);
+void	p_sleep(t_philo *this);
 void	think(t_philo *this);
 void	*start_philo(void *philo);
 // public
 time_t	last_eat(t_philo *this);
 uint8_t	isalive(t_philo *this);
-void	log(t_philo *phil, t_action act);
+void	p_log(t_philo *phil, t_action act);
 t_philo	*new_philo(pthread_mutex_t *fork_left, pthread_mutex_t *fork_right
 	, t_common_data *data);
 uint8_t	verify_eat_time(t_philo *phil);

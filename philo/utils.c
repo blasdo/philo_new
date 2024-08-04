@@ -1,9 +1,10 @@
-#include <philo.h>
+#include "philo.h"
 
 uint8_t	ft_isnumber(char *str)
 {
 	int	i;
 
+	i = 0;
 	while(str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
@@ -35,7 +36,7 @@ int	ft_atoi(const char *nptr)
 
 	sign = 0;
 	res = 0;
-	while (ft_isspace(*nptr))
+	while (isspace(*nptr))
 		nptr++;
 	if (*nptr == '+' || *nptr == '-')
 	{
@@ -43,7 +44,7 @@ int	ft_atoi(const char *nptr)
 			sign = 1;
 		nptr++;
 	}
-	while (ft_isdigit(*nptr))
+	while (isdigit(*nptr))
 	{
 		if (sign == 0)
 			res = (res * 10) + (*(nptr++) - '0');
