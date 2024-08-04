@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:59:49 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/04 14:27:25 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/04 19:54:26 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,12 @@ void	eat_pair(t_philo *this)
 		usleep(this->common_data->eat_time * 1000);
 		pthread_mutex_unlock(this->forks[1]);
 	}
+	else
+	{
+		usleep(common->limit_time * 1000);
+		p_log(this, DEAD);
+	}
 	pthread_mutex_unlock(this->forks[0]);
-	verify_eat_time(this);
 }
 
 void	eat_odd(t_philo *this)
@@ -57,6 +61,11 @@ void	eat_odd(t_philo *this)
 		pthread_mutex_unlock(&(this->philo_mutex));
 		usleep(this->common_data->eat_time * 1000);
 		pthread_mutex_unlock(this->forks[0]);
+	}
+	else
+	{
+		usleep(common->limit_time * 1000);
+		p_log(this, DEAD);
 	}
 	pthread_mutex_unlock(this->forks[1]);
 }

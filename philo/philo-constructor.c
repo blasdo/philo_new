@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:57:09 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/04 13:59:45 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/04 19:50:18 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_philo	*new_philo(pthread_mutex_t *fork_left, pthread_mutex_t *fork_right
 	result->forks[0] = fork_left;
 	result->forks[1] = fork_right;
 	result->isalive = 1;
+	result->last_time_eat = 0;
 	pthread_mutex_init(&result->philo_mutex, NULL);
 	result->common_data = data;
 	pthread_create(&result->thread, NULL, start_philo, result);
@@ -35,7 +36,6 @@ void	*start_philo(void *this)
 
 	phil = this;
 	pthread_mutex_lock(&phil->common_data->start_mutex);
-	phil->last_time_eat = phil->common_data->start_time;
 	pthread_mutex_unlock(&phil->common_data->start_mutex);
 	think(phil);
 	return (NULL);

@@ -48,10 +48,10 @@ void	inspect_philos(int nop, t_philo **philos, t_common_data *common)
 	uint8_t	anyone_died;
 	time_t	current_time;
 
-	i = 0;
 	anyone_died = 0;
 	while (!anyone_died)
 	{
+		i = 0;
 		while (i < nop)
 		{
 			current_time = get_milliseconds() - common->start_time;
@@ -61,6 +61,7 @@ void	inspect_philos(int nop, t_philo **philos, t_common_data *common)
 				anyone_died = 1;
 				break;
 			}
+			i++;
 		}
 	}
 }
