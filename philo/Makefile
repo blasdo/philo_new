@@ -2,10 +2,11 @@ SRCS	=	main.c\
 			philo.c\
 			philo-constructor.c\
 			philo-public.c\
+			philo-public-boolean.c\
 			utils.c
 OBJS	= $(SRCS:.c=.o)
 NAME	= philo
-	CFLAGS	= -g3 
+CFLAGS	= -fsanitize=thread
 
 all:	$(NAME)
 

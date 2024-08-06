@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:59:49 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/04 19:54:26 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:21:49 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@ void p_sleep(t_philo *this)
 
 void	think(t_philo *this)
 {
-	while (isalive(this))
+	int	noe;
+
+	noe = this->common_data->max_eats;
+	while (isalive(this) && noe)
 	{
 		p_log(this, THINK);
 		if (this->id % 2 == 0)
@@ -89,5 +92,10 @@ void	think(t_philo *this)
 		else
 			eat_odd(this);
 		p_sleep(this);
+		if (noe > 0)
+			noe--;
 	}
+	pthread_mutex_lock(&this->philo_mutex);
+	this->hasfinished = 1;
+	pthread_mutex_unlock(&this->philo_mutex);
 }

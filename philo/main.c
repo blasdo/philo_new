@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:26:58 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/07/31 16:36:51y bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:39:32 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ t_common_data	*init_common(int argc, char **argv)
 	result->limit_time = ft_atoi(argv[2]);
 	result->eat_time = ft_atoi(argv[3]);
 	result->sleep_time = ft_atoi(argv[4]);
+	if (argc == 6)
+		result->max_eats = ft_atoi(argv[5]);
+	else
+		result->max_eats = -1;
 	pthread_mutex_init(&result->start_mutex, NULL);
 	pthread_mutex_init(&result->log_mutex, NULL);
 	pthread_mutex_lock(&result->start_mutex);
@@ -55,11 +59,12 @@ void	inspect_philos(int nop, t_philo **philos, t_common_data *common)
 		while (i < nop)
 		{
 			current_time = get_milliseconds() - common->start_time;
-			if (last_eat(philos[i]) + common->limit_time < current_time)
+			if (last_eat(philos[i]) + common->limit_time < current_time
+				|| !isalive(philos[i]))
 			{
 				p_log(philos[i], DEAD);
 				anyone_died = 1;
-				break;
+				break ;
 			}
 			i++;
 		}

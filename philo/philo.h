@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:01:55 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/02 14:49:11 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/06 11:12:49 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_philo
 {
 	uint32_t		id;
 	uint8_t			isalive;
+	uint8_t			hasfinished;
 	time_t			last_time_eat;
 	pthread_mutex_t	*forks[2];
 	pthread_mutex_t	philo_mutex;
@@ -79,6 +80,7 @@ void	*start_philo(void *philo);
 // public
 time_t	last_eat(t_philo *this);
 uint8_t	isalive(t_philo *this);
+uint8_t	p_hasfinished(t_philo *this);
 void	p_log(t_philo *phil, t_action act);
 t_philo	*new_philo(pthread_mutex_t *fork_left, pthread_mutex_t *fork_right
 	, t_common_data *data);
