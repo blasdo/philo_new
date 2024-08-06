@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:57:09 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/06 12:16:30 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:46:48 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_philo	*new_philo(pthread_mutex_t *fork_left, pthread_mutex_t *fork_right
 {
 	t_philo			*result;
 	static uint32_t	id = 1;
-	
+
 	result = malloc(sizeof(t_philo));
 	result->id = id++;
 	result->forks[0] = fork_left;

@@ -6,12 +6,11 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:31:57 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/06 12:16:06 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:48:26 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
 
 time_t	last_eat(t_philo *this)
 {
@@ -23,8 +22,6 @@ time_t	last_eat(t_philo *this)
 	return (result);
 }
 
-
-
 void	hemlock(t_philo *this)
 {
 	pthread_mutex_lock(&this->philo_mutex);
@@ -34,8 +31,8 @@ void	hemlock(t_philo *this)
 
 void	p_log(t_philo *this, t_action act)
 {
-	const char	*actions[5] = {"is thinking", "has taken a fork", "is eating"
-		, "is sleeping", "died"};
+	const char		*actions[5] = {"is thinking", "has taken a fork",
+		"is eating", "is sleeping", "died"};
 	static uint8_t	canwrite = 1;
 
 	if (!isalive(this) || p_hasfinished(this))
@@ -43,7 +40,7 @@ void	p_log(t_philo *this, t_action act)
 	pthread_mutex_lock(&this->common_data->log_mutex);
 	if (canwrite)
 	{
-		printf("%li %i %s\n", get_milliseconds() - this->common_data->start_time,
+		printf("%li %i %s\n", get_ms() - this->common_data->start_time,
 			this->id, actions[act]);
 		if (act == DEAD)
 		{

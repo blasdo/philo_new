@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_public_boolean.c                             :+:      :+:    :+:   */
+/*   philo-public-boolean.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:07:51 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/06 11:16:00 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:46:34 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ uint8_t	verify_eat_time(t_philo *this)
 
 	result = 1;
 	pthread_mutex_lock(&this->philo_mutex);
-		if (get_milliseconds()
-			> this->last_time_eat + this->common_data->limit_time)
-				result = 0;
+	if (get_ms()
+		> this->last_time_eat + this->common_data->limit_time)
+		result = 0;
 	pthread_mutex_unlock(&this->philo_mutex);
 	return (result);
 }

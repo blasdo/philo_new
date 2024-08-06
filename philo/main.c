@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:26:58 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/06 12:39:32 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:51:11 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_common_data	*init_common(int argc, char **argv)
 
 pthread_mutex_t	*create_forks(int nof)
 {
-	int	i;
+	int				i;
 	pthread_mutex_t	*result;
 
 	result = malloc(nof * sizeof(pthread_mutex_t));
@@ -58,7 +58,7 @@ void	inspect_philos(int nop, t_philo **philos, t_common_data *common)
 		i = 0;
 		while (i < nop)
 		{
-			current_time = get_milliseconds() - common->start_time;
+			current_time = get_ms() - common->start_time;
 			if (last_eat(philos[i]) + common->limit_time < current_time
 				|| !isalive(philos[i]))
 			{
@@ -113,7 +113,7 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	philos[i] = new_philo(&forks[i], &forks[0], common);
-	common->start_time = get_milliseconds();
+	common->start_time = get_ms();
 	pthread_mutex_unlock(&common->start_mutex);
 	wait_philos(number_of_philos, philos, common);
 	return (free(common), free(forks), 0);

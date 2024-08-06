@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:59:49 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/06 12:21:49 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:51:58 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	eat_pair(t_philo *this)
 {
-	const t_common_data	*common = this->common_data;
+	const t_common_data	*cn = this->common_data;
 
 	if (!isalive(this))
 		return ;
@@ -24,18 +24,18 @@ void	eat_pair(t_philo *this)
 	{
 		pthread_mutex_lock(this->forks[1]);
 		p_log(this, FORK);
-		if (get_milliseconds() > this->last_time_eat + common->start_time + common->limit_time)
+		if (get_ms() > this->last_time_eat + cn->start_time + cn->limit_time)
 			p_log(this, DEAD);
 		p_log(this, EAT);
 		pthread_mutex_lock(&(this->philo_mutex));
-		this->last_time_eat = get_milliseconds() - this->common_data->start_time;
+		this->last_time_eat = get_ms() - this->common_data->start_time;
 		pthread_mutex_unlock(&(this->philo_mutex));
 		usleep(this->common_data->eat_time * 1000);
 		pthread_mutex_unlock(this->forks[1]);
 	}
 	else
 	{
-		usleep(common->limit_time * 1000);
+		usleep(cn->limit_time * 1000);
 		p_log(this, DEAD);
 	}
 	pthread_mutex_unlock(this->forks[0]);
@@ -43,7 +43,7 @@ void	eat_pair(t_philo *this)
 
 void	eat_odd(t_philo *this)
 {
-	const t_common_data	*common = this->common_data;
+	const t_common_data	*cn = this->common_data;
 
 	if (!isalive(this))
 		return ;
@@ -53,24 +53,24 @@ void	eat_odd(t_philo *this)
 	{
 		pthread_mutex_lock(this->forks[0]);
 		p_log(this, FORK);
-		if (get_milliseconds() > this->last_time_eat + common->start_time + common->limit_time)
+		if (get_ms() > this->last_time_eat + cn->start_time + cn->limit_time)
 			p_log(this, DEAD);
 		p_log(this, EAT);
 		pthread_mutex_lock(&(this->philo_mutex));
-		this->last_time_eat = get_milliseconds() - this->common_data->start_time;
+		this->last_time_eat = get_ms() - this->common_data->start_time;
 		pthread_mutex_unlock(&(this->philo_mutex));
 		usleep(this->common_data->eat_time * 1000);
 		pthread_mutex_unlock(this->forks[0]);
 	}
 	else
 	{
-		usleep(common->limit_time * 1000);
+		usleep(cn->limit_time * 1000);
 		p_log(this, DEAD);
 	}
 	pthread_mutex_unlock(this->forks[1]);
 }
 
-void p_sleep(t_philo *this)
+void	p_sleep(t_philo *this)
 {
 	if (!isalive(this))
 		return ;

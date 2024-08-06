@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:01:55 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/06 11:12:49 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:53:13 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ typedef struct s_common_data
 * common_data: struct of common data
 */
 
-typedef enum	e_action
+typedef enum e_action
 {
 	THINK,
 	FORK,
 	EAT,
 	SLEEP,
 	DEAD
-}				t_action;
+}			t_action;
 
 typedef struct s_philo
 {
@@ -82,12 +82,12 @@ time_t	last_eat(t_philo *this);
 uint8_t	isalive(t_philo *this);
 uint8_t	p_hasfinished(t_philo *this);
 void	p_log(t_philo *phil, t_action act);
-t_philo	*new_philo(pthread_mutex_t *fork_left, pthread_mutex_t *fork_right
-	, t_common_data *data);
+t_philo	*new_philo(pthread_mutex_t *fork_left, pthread_mutex_t *fork_right,
+			t_common_data *data);
 uint8_t	verify_eat_time(t_philo *phil);
 //utils
 uint8_t	verify_args(int argc, char **argv);
 int		ft_atoi(const char *nptr);
-time_t	get_milliseconds(void);
+time_t	get_ms(void);
 
 #endif
