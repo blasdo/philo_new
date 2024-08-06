@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:48:48 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/06 12:50:18 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/06 17:27:27 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,46 +24,6 @@ uint8_t	ft_isnumber(char *str)
 		i++;
 	}
 	return (1);
-}
-
-uint8_t	verify_args(int argc, char **argv)
-{
-	int	i;
-
-	if (argc < 4 || argc > 6)
-		return (0);
-	i = 1;
-	while (i < argc)
-	{
-		if (!ft_isnumber(argv[i++]))
-			return (0);
-	}
-	return (1);
-}
-
-int	ft_atoi(const char *nptr)
-{
-	int	sign;
-	int	res;
-
-	sign = 0;
-	res = 0;
-	while (isspace(*nptr))
-		nptr++;
-	if (*nptr == '+' || *nptr == '-')
-	{
-		if (*nptr == '-')
-			sign = 1;
-		nptr++;
-	}
-	while (isdigit(*nptr))
-	{
-		if (sign == 0)
-			res = (res * 10) + (*(nptr++) - '0');
-		else
-			res = (res * 10) - (*(nptr++) - '0');
-	}
-	return (res);
 }
 
 time_t	get_ms(void)

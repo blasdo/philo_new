@@ -3,6 +3,7 @@ SRCS	=	main.c\
 			philo-constructor.c\
 			philo-public.c\
 			philo-public-boolean.c\
+			argument-control.c\
 			utils.c
 OBJS	= $(SRCS:.c=.o)
 NAME	= philo
