@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:26:58 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/07 17:40:10 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:12:13 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_common_data	*init_common(int argc, char **argv)
 	if (!result)
 		return (NULL);
 	result->nop = ft_atoi(argv[1]);
+	if (result->nop < 1)
+		return (free(result), NULL);
 	result->limit_time = ft_atoi(argv[2]);
 	result->eat_time = ft_atoi(argv[3]);
 	result->sleep_time = ft_atoi(argv[4]);
@@ -98,15 +100,17 @@ int	main(int argc, char *argv[])
 
 	i = 0;
 	common = init_common(argc, argv);
-	philos = malloc(common->nop * sizeof(void *));
-	forks = create_forks(common->nop);
-	if (common->nop < 1)
-		return (0);
 	if (!common)
-		return (printf("Memory error\n"), 0);
+		return (0);
+	philos = malloc(common->nop * sizeof(void *));
+	if (!philos)
+		return (free(common), 1);
+	forks = create_forks(common->nop);
 	while (i < common->nop - 1)
 	{
 		philos[i] = new_philo(&forks[i], &forks[i + 1], common);
+		if (!philos[i])
+			return (clean_phill(philos, i), free(common), free(forks), 0);
 		i++;
 	}
 	philos[i] = new_philo(&forks[i], &forks[0], common);

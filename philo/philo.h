@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:01:55 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/07 17:37:37 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:06:30 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ t_philo	*new_philo(pthread_mutex_t *fork_left, pthread_mutex_t *fork_right,
 			t_common_data *data);
 uint8_t	verify_eat_time(t_philo *phil);
 //utils
+void	clean_phill(t_philo **philo, int creat);
 uint8_t	verify_args(int argc, char **argv);
 int		ft_atoi(const char *nptr);
 time_t	get_ms(void);

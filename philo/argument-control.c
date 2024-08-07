@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:26:23 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/07 17:08:29 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:11:30 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ uint8_t	verify_args(int argc, char **argv)
 {
 	int	i;
 
-	if (argc < 4 || argc > 6)
+	if (argc != 5 && argc != 6)
 		return (0);
 	i = 1;
 	while (i < argc)
