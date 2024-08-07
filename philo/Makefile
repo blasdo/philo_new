@@ -7,8 +7,7 @@ SRCS	=	main.c\
 			utils.c
 OBJS	= $(SRCS:.c=.o)
 NAME	= philo
-CFLAGS	= -fsanitize=thread
-
+CFLAGS	= -Wall -Wextra -Werror
 all:	$(NAME)
 
 clean:

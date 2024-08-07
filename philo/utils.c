@@ -6,25 +6,11 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:48:48 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/06 17:27:27 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:47:16 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-uint8_t	ft_isnumber(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 time_t	get_ms(void)
 {

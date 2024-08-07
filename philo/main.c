@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:26:58 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/06 12:51:11 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/07 17:40:10 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ t_common_data	*init_common(int argc, char **argv)
 {
 	t_common_data	*result;
 
+	if (!verify_args(argc, argv))
+		return (NULL);
 	result = malloc(sizeof(t_common_data));
 	if (!result)
 		return (NULL);
+	result->nop = ft_atoi(argv[1]);
 	result->limit_time = ft_atoi(argv[2]);
 	result->eat_time = ft_atoi(argv[3]);
 	result->sleep_time = ft_atoi(argv[4]);
@@ -88,26 +91,20 @@ void	wait_philos(int nop, t_philo **philos, t_common_data *common)
 
 int	main(int argc, char *argv[])
 {
-	int				number_of_philos;
 	int				i;
 	t_philo			**philos;
 	t_common_data	*common;
 	pthread_mutex_t	*forks;
 
 	i = 0;
-	if (!verify_args(argc, argv))
-		return (printf("Invalid arguments\n"), 0);
-	number_of_philos = ft_atoi(argv[1]);
-	if (number_of_philos <= 0)
-		return (printf("Invalid arguments\n"), 0);
-	philos = malloc(number_of_philos * sizeof(void *));
-	forks = create_forks(number_of_philos);
-	if (number_of_philos < 1)
-		return (0);
 	common = init_common(argc, argv);
+	philos = malloc(common->nop * sizeof(void *));
+	forks = create_forks(common->nop);
+	if (common->nop < 1)
+		return (0);
 	if (!common)
 		return (printf("Memory error\n"), 0);
-	while (i < number_of_philos - 1)
+	while (i < common->nop - 1)
 	{
 		philos[i] = new_philo(&forks[i], &forks[i + 1], common);
 		i++;
@@ -115,6 +112,6 @@ int	main(int argc, char *argv[])
 	philos[i] = new_philo(&forks[i], &forks[0], common);
 	common->start_time = get_ms();
 	pthread_mutex_unlock(&common->start_mutex);
-	wait_philos(number_of_philos, philos, common);
+	wait_philos(common->nop, philos, common);
 	return (free(common), free(forks), 0);
 }

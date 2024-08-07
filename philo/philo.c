@@ -6,13 +6,13 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:59:49 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/06 12:51:58 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:53:59 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	eat_pair(t_philo *this)
+void	eat_odd(t_philo *this)
 {
 	const t_common_data	*cn = this->common_data;
 
@@ -41,7 +41,7 @@ void	eat_pair(t_philo *this)
 	pthread_mutex_unlock(this->forks[0]);
 }
 
-void	eat_odd(t_philo *this)
+void	eat_pair(t_philo *this)
 {
 	const t_common_data	*cn = this->common_data;
 
