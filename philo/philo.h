@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:01:55 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/07 18:06:30 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/11 13:15:43 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ typedef struct s_philo
 	t_common_data	*common_data;
 }				t_philo;
 
-void	eat_pair(t_philo *this);
-void	eat_odd(t_philo *this);
+void	eat(t_philo *this);
 void	p_sleep(t_philo *this);
 void	think(t_philo *this);
 void	*start_philo(void *philo);
