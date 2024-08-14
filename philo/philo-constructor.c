@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo-constructor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: bvelasco42 <bvelasco42@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:57:09 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/11 12:39:27 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/14 20:51:57 by bvelasco42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	*start_philo(void *this)
 	pthread_mutex_lock(&phil->common_data->start_mutex);
 	pthread_mutex_unlock(&phil->common_data->start_mutex);
 	if (phil->id % 2 == 0)
-		usleep(1000);
+		usleep(500);
 	think(phil);
 	return (NULL);
 }
