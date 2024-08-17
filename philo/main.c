@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:26:58 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/17 19:35:47 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:41:19 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ pthread_mutex_t	*create_forks(int nof)
 	return (result);
 }
 
-t_philo **init_philos(t_common_data *common, pthread_mutex_t *forks)
+t_philo	**init_philos(t_common_data *common, pthread_mutex_t *forks)
 {
-	int	i;
+	int		i;
 	t_philo	**philos;
 
 	i = 0;
@@ -73,6 +73,7 @@ t_philo **init_philos(t_common_data *common, pthread_mutex_t *forks)
 	philos[i] = new_philo(&forks[i], &forks[0], common);
 	return (philos);
 }
+
 int	main(int argc, char *argv[])
 {
 	t_philo			**philos;
@@ -84,7 +85,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	forks = create_forks(common->nop);
 	if (!forks)
-		return(free(common), 1);
+		return (free(common), 1);
 	philos = init_philos(common, forks);
 	if (!philos)
 		return (free(common), free(forks), 1);

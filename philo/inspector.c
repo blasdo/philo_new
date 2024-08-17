@@ -6,12 +6,11 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:25:07 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/17 19:26:08 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:40:27 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
 
 void	inspect_philos(int nop, t_philo **philos, t_common_data *common)
 {
