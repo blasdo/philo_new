@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:01:55 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/11 13:15:43 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:26:26 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,7 @@ void	clean_phill(t_philo **philo, int creat);
 uint8_t	verify_args(int argc, char **argv);
 int		ft_atoi(const char *nptr);
 time_t	get_ms(void);
-
+// inspector
+void	inspect_philos(int nop, t_philo **philos, t_common_data *common);
+void	wait_philos(int nop, t_philo **philos, t_common_data *common);
 #endif
