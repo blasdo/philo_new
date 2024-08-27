@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco42 <bvelasco42@student.42.fr>      +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:59:49 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/08/16 15:27:28 by bvelasco42       ###   ########.fr       */
+/*   Updated: 2024/08/27 10:37:27 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	eat_first_left(t_philo *this)
 	if (!isalive(this))
 		return ;
 	if (this->forks[0] == this->forks[1])
-		return (usleep(this->common_data->limit_time), p_log(this, DEAD));
+		return (usleep(this->common_data->limit_time * 1000),
+			p_log(this, DEAD));
 	pthread_mutex_lock(this->forks[0]);
 	p_log(this, FORK);
 	pthread_mutex_lock(this->forks[1]);
@@ -74,9 +75,9 @@ void	think(t_philo *this)
 	{
 		p_log(this, THINK);
 		if (this->id % 2 == 0 && this->common_data->nop % 2 == 0)
-			eat_first_left(this);
-		else
 			eat_first_right(this);
+		else
+			eat_first_left(this);
 		p_sleep(this);
 		if (noe > 0)
 			noe--;
